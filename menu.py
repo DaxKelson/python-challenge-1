@@ -52,7 +52,7 @@ menu = {
 
 # 1. Set up order list. Order list will store a list of dictionaries for
 # menu item name, item price, and quantity ordered
-
+customerOrder= [ {"Item name": "string", "Price": float, "Quantity": int}]
 
 # Launch the store and present a greeting to the customer
 print("Welcome to the variety food truck.")
@@ -118,26 +118,40 @@ while place_order:
                     }
                     i += 1
             # 2. Ask customer to input menu item number
-
+            customerMenuItem = input("Please select a menu Item: ")
 
             # 3. Check if the customer typed a number
-
+            if customerMenuItem.isdigit():
                 # Convert the menu selection to an integer
-
-
+                 customerMenuInt = int(customerMenuItem)
                 # 4. Check if the menu selection is in the menu items
+                 if (customerMenuInt) in menu_items.keys():
+                        print ("good job")
+                    
+                    
+                     # Store the item name as a variable
+                        customerItemSelection = menu_items[customerMenuInt]["Item name"]
+                        print (f"you picked {customerItemSelection}")
 
-                    # Store the item name as a variable
 
 
                     # Ask the customer for the quantity of the menu item
-
+                        customerItemQuantity = input("How many do you want: ")
 
                     # Check if the quantity is a number, default to 1 if not
-
-
+                        if customerItemQuantity.isdigit():
+                            itemQuantity = customerItemQuantity
+                            print (f"you picked {itemQuantity}")
+                        else:   
+                            itemQuantity = 1
+                            print (f"you picked {itemQuantity}")
                     # Add the item name, price, and quantity to the order list
+   
+                 else:
+                    print(f"{customerMenuInt} was not a menu option.")
+                             
 
+                 
 
                     # Tell the customer that their input isn't valid
 
