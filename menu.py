@@ -118,12 +118,12 @@ while place_order:
                     }
                     i += 1
             # 2. Ask customer to input menu item number
-            customerMenuItem = input("Please select a menu Item: ")
+            menu_selection = input("Please select a menu Item: ")
 
             # 3. Check if the customer typed a number
-            if customerMenuItem.isdigit():
+            if menu_selection.isdigit():
                 # Convert the menu selection to an integer
-                 customerMenuInt = int(customerMenuItem)
+                 customerMenuInt = int(menu_selection)
                 # 4. Check if the menu selection is in the menu items
                  if (customerMenuInt) in menu_items.keys():
                     
@@ -142,50 +142,33 @@ while place_order:
                             
                             newOrder = ({"Item name" : menu_items[customerMenuInt]["Item name"], "Price": menu_items[customerMenuInt]["Price"], "Quantity": itemQuantity})
                             customerOrder.append(newOrder)
-                            print("Current Order:", customerOrder)
+                            # DEBUG print("Current Order:", customerOrder)
                         else:   
                             itemQuantity = 1
                            
                             newOrder = ({"Item name" : menu_items[customerMenuInt]["Item name"], "Price": menu_items[customerMenuInt]["Price"], "Quantity": itemQuantity})
                             customerOrder.append(newOrder)
-                            print("Current Order:", customerOrder)
+                           # DEBUG print("Current Order:", customerOrder)
 
                        
   
                     #throw error
-                 else:
-                    print(f"{customerMenuInt} was not a menu option.")
+                 else:       print(f"{customerMenuInt} was not a menu option.")
+            else:
+                print(f"{menu_category} was not a menu option.")
                         
 
-        else:
-            # Tell the customer they didn't select a menu option
-            print(f"{menu_category} was not a menu option.")
-    else:
-        # Tell the customer they didn't select a number
-        print("You didn't select a number.")
-
-
-        # Ask the customer if they would like to order anything else
-    
-
-
-
-                # Exit the keep ordering question loop
-
-                # Complete the order
-
-                # Since the customer decided to stop ordering, thank them for
-                # their order
-
-                # Exit the keep ordering question loop
-
-
-    keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ")
-    # 5. Check the customer's input
-    if keep_ordering == "y".casefold():
-            print("you ordered again")
-    else:
-        place_order = False               # Tell the customer to try again
+    while True:
+        keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ")
+        # 5. Check the customer's input
+        match keep_ordering:
+            case "y" | "Y":
+                break
+            case "n" | "N":
+                place_order = False 
+                break
+            case _: #default case
+                print("Please enter either y or n")             
 
 
 # Print out the customer's order
